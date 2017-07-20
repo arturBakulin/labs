@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.1" sequence="0" timestamp="1500552203583" analysisTimestamp="1500552203601" release="">
+  <Project projectName="">
+    <Jar>/Users/grigoriy/Documents/workspace/labortorythirteen/build/classes</Jar>
+    <Jar>/Users/grigoriy/Documents/workspace/labortorythirteen/build/tests</Jar>
+    <AuxClasspathEntry>/Users/grigoriy/Documents/workspace/labortorythirteen/lib/junit-4.12.jar</AuxClasspathEntry>
+  </Project>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" instanceHash="c7b80d775e31e6c4f5cfc7a12bc1c63a" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="374">
+    <ShortMessage>May expose internal representation by returning reference to mutable object</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.entity.User.getBirhday() may expose internal representation by returning User.birthday</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="18" end="163" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>At User.java:[lines 18-163]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.entity.User</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.entity.User" name="getBirhday" signature="()Ljava/sql/Date;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="158" end="158" startBytecode="0" endBytecode="46" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.entity.User.getBirhday()</Message>
+    </Method>
+    <Field classname="com.nixsolutions.laboratorythirteen.entity.User" name="birthday" signature="Ljava/sql/Date;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>In User.java</Message>
+      </SourceLine>
+      <Message>Field com.nixsolutions.laboratorythirteen.entity.User.birthday</Message>
+    </Field>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true" start="158" end="158" startBytecode="4" endBytecode="4" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+      <Message>At User.java:[line 158]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" instanceHash="e4b86ef258b9cc285d1aef331b494b26" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="374">
+    <ShortMessage>May expose internal representation by incorporating reference to mutable object</ShortMessage>
+    <LongMessage>new com.nixsolutions.laboratorythirteen.entity.User(long, String, String, String, String, String, Date, long) may expose internal representation by storing an externally mutable object into User.birthday</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="18" end="163" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>At User.java:[lines 18-163]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.entity.User</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.entity.User" name="&lt;init&gt;" signature="(JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/sql/Date;J)V" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="127" end="136" startBytecode="0" endBytecode="208" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java"/>
+      <Message>In method new com.nixsolutions.laboratorythirteen.entity.User(long, String, String, String, String, String, Date, long)</Message>
+    </Method>
+    <Field classname="com.nixsolutions.laboratorythirteen.entity.User" name="birthday" signature="Ljava/sql/Date;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>In User.java</Message>
+      </SourceLine>
+      <Message>Field com.nixsolutions.laboratorythirteen.entity.User.birthday</Message>
+    </Field>
+    <LocalVariable name="birthday" register="8" pc="41" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named birthday</Message>
+    </LocalVariable>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true" start="134" end="134" startBytecode="41" endBytecode="41" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+      <Message>At User.java:[line 134]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" instanceHash="3061bd9a6fd12552a6586a9e6645bfbd" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="374">
+    <ShortMessage>May expose internal representation by incorporating reference to mutable object</ShortMessage>
+    <LongMessage>new com.nixsolutions.laboratorythirteen.entity.User(String, String, String, String, String, Date, long) may expose internal representation by storing an externally mutable object into User.birthday</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="18" end="163" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>At User.java:[lines 18-163]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.entity.User</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.entity.User" name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/sql/Date;J)V" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="140" end="148" startBytecode="0" endBytecode="187" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java"/>
+      <Message>In method new com.nixsolutions.laboratorythirteen.entity.User(String, String, String, String, String, Date, long)</Message>
+    </Method>
+    <Field classname="com.nixsolutions.laboratorythirteen.entity.User" name="birthday" signature="Ljava/sql/Date;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>In User.java</Message>
+      </SourceLine>
+      <Message>Field com.nixsolutions.laboratorythirteen.entity.User.birthday</Message>
+    </Field>
+    <LocalVariable name="birthday" register="6" pc="34" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named birthday</Message>
+    </LocalVariable>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true" start="146" end="146" startBytecode="34" endBytecode="34" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+      <Message>At User.java:[line 146]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" instanceHash="37601dd3fb23cc167693f77d644d5040" instanceOccurrenceNum="0" instanceOccurrenceMax="0" cweid="374">
+    <ShortMessage>May expose internal representation by incorporating reference to mutable object</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.entity.User.setBirhday(Date) may expose internal representation by storing an externally mutable object into User.birthday</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="18" end="163" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>At User.java:[lines 18-163]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.entity.User</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.entity.User" name="setBirhday" signature="(Ljava/sql/Date;)V" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" start="162" end="163" startBytecode="0" endBytecode="61" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.entity.User.setBirhday(Date)</Message>
+    </Method>
+    <Field classname="com.nixsolutions.laboratorythirteen.entity.User" name="birthday" signature="Ljava/sql/Date;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+        <Message>In User.java</Message>
+      </SourceLine>
+      <Message>Field com.nixsolutions.laboratorythirteen.entity.User.birthday</Message>
+    </Field>
+    <LocalVariable name="birhday" register="1" pc="2" role="LOCAL_VARIABLE_NAMED">
+      <Message>Local variable named birhday</Message>
+    </LocalVariable>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.entity.User" primary="true" start="162" end="162" startBytecode="2" endBytecode="2" sourcefile="User.java" sourcepath="com/nixsolutions/laboratorythirteen/entity/User.java">
+      <Message>At User.java:[line 162]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="cd21decd17e3e65db0bc74db1cab7df0" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.findByName(String) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="findByName" signature="(Ljava/lang/String;)Lcom/nixsolutions/laboratorythirteen/entity/Role;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="157" end="200" startBytecode="0" endBytecode="909" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.findByName(String)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="166" end="166" startBytecode="39" endBytecode="39" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 166] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="167" end="167" startBytecode="46" endBytecode="46" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 167]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="170" end="170" startBytecode="64" endBytecode="64" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 170]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="176" end="176" startBytecode="74" endBytecode="74" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 176]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="190" end="190" startBytecode="93" endBytecode="93" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 190]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="192" end="192" startBytecode="170" endBytecode="170" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 192]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="198" end="198" startBytecode="189" endBytecode="189" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 198]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="200" end="200" startBytecode="387" endBytecode="387" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 200]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="a17b1ea0caa216cc61655e4a2d7f994e" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.isRoleExist(Role) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="isRoleExist" signature="(Lcom/nixsolutions/laboratorythirteen/entity/Role;)Z" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="228" end="266" startBytecode="0" endBytecode="1203" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.isRoleExist(Role)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="233" end="233" startBytecode="17" endBytecode="17" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 233] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="234" end="234" startBytecode="24" endBytecode="24" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 234]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="242" end="242" startBytecode="184" endBytecode="184" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 242]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="256" end="256" startBytecode="203" endBytecode="203" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 256]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="258" end="258" startBytecode="280" endBytecode="280" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 258]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="264" end="264" startBytecode="299" endBytecode="299" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 264]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="266" end="266" startBytecode="501" endBytecode="501" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 266]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="741d1eedd4e8d1024f061a73483d813e" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.deleteRoleById(Role, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="deleteRoleById" signature="(Lcom/nixsolutions/laboratorythirteen/entity/Role;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="295" end="298" startBytecode="0" endBytecode="112" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.deleteRoleById(Role, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="295" end="295" startBytecode="3" endBytecode="3" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 295] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="296" end="296" startBytecode="9" endBytecode="9" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 296]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="558cbdf7c0c8aafaaf259456c9b72583" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.insertRole(Role, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="insertRole" signature="(Lcom/nixsolutions/laboratorythirteen/entity/Role;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="287" end="290" startBytecode="0" endBytecode="112" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.insertRole(Role, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="287" end="287" startBytecode="3" endBytecode="3" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 287] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="288" end="288" startBytecode="9" endBytecode="9" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 288]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="5a3660f6ef893f525978aa063b0a6c3a" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleById(Role, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="selectRoleById" signature="(Lcom/nixsolutions/laboratorythirteen/entity/Role;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="271" end="273" startBytecode="0" endBytecode="101" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleById(Role, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="271" end="271" startBytecode="3" endBytecode="3" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 271] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="272" end="272" startBytecode="9" endBytecode="9" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 272]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="3cf8dfd8b76b1fe8133b8ff4685fc9d6" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleByName(String, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="selectRoleByName" signature="(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="303" end="305" startBytecode="0" endBytecode="98" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleByName(String, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="303" end="303" startBytecode="3" endBytecode="3" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 303] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="304" end="304" startBytecode="9" endBytecode="9" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 304]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="2b814eb730448fb2be8020a55b57840b" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.updateRoleName(Role, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="12" end="305" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java">
+        <Message>At JdbcRoleDaoImpl.java:[lines 12-305]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" name="updateRoleName" signature="(Lcom/nixsolutions/laboratorythirteen/entity/Role;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="278" end="282" startBytecode="0" endBytecode="127" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.updateRoleName(Role, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" primary="true" start="278" end="278" startBytecode="3" endBytecode="3" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 278] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" start="279" end="279" startBytecode="9" endBytecode="9" sourcefile="JdbcRoleDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcRoleDaoImpl.java:[line 279]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="5f2819694ac32cf943e68410a91d294d" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="findAll" signature="()Ljava/util/List;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="157" end="199" startBytecode="0" endBytecode="955" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="163" end="163" startBytecode="28" endBytecode="28" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 163] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="164" end="164" startBytecode="34" endBytecode="34" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 164]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="175" end="175" startBytecode="135" endBytecode="135" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 175]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="189" end="189" startBytecode="154" endBytecode="154" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 189]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="191" end="191" startBytecode="228" endBytecode="228" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 191]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="197" end="197" startBytecode="247" endBytecode="247" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 197]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="199" end="199" startBytecode="443" endBytecode="443" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 199]</Message>
+    </SourceLine>
+    <String value="{Statement x 1,ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1,ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="b5938dcec252a39382f887063608877d" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to clean up java.sql.Statement</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="findAll" signature="()Ljava/util/List;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="157" end="199" startBytecode="0" endBytecode="955" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="162" end="162" startBytecode="21" endBytecode="21" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 162] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="163" end="163" startBytecode="28" endBytecode="28" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 163]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="164" end="164" startBytecode="34" endBytecode="34" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 164]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="175" end="175" startBytecode="135" endBytecode="135" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 175]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="189" end="189" startBytecode="154" endBytecode="154" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 189]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="191" end="191" startBytecode="228" endBytecode="228" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 191]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="197" end="197" startBytecode="247" endBytecode="247" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 197]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="199" end="199" startBytecode="443" endBytecode="443" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 199]</Message>
+    </SourceLine>
+    <String value="{Statement x 1,ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1,ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="a68bfd3b122fbcdf72cea8dff3b23fd1" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByEmail(String) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="findByEmail" signature="(Ljava/lang/String;)Lcom/nixsolutions/laboratorythirteen/entity/User;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="255" end="301" startBytecode="0" endBytecode="999" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByEmail(String)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="267" end="267" startBytecode="55" endBytecode="55" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 267] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="268" end="268" startBytecode="62" endBytecode="62" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 268]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="269" end="269" startBytecode="70" endBytecode="70" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 269]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="270" end="270" startBytecode="106" endBytecode="106" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 270]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="271" end="271" startBytecode="133" endBytecode="133" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 271]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="277" end="277" startBytecode="153" endBytecode="153" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 277]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="291" end="291" startBytecode="172" endBytecode="172" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 291]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="293" end="293" startBytecode="249" endBytecode="249" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 293]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="299" end="299" startBytecode="268" endBytecode="268" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 299]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="301" end="301" startBytecode="470" endBytecode="470" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 301]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="ba061b233e6ae606f8ffcf2b6d1c57d5" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByLogin(String) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="findByLogin" signature="(Ljava/lang/String;)Lcom/nixsolutions/laboratorythirteen/entity/User;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="204" end="250" startBytecode="0" endBytecode="999" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByLogin(String)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="216" end="216" startBytecode="55" endBytecode="55" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 216] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="217" end="217" startBytecode="62" endBytecode="62" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 217]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="218" end="218" startBytecode="70" endBytecode="70" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 218]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="219" end="219" startBytecode="106" endBytecode="106" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 219]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="220" end="220" startBytecode="133" endBytecode="133" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 220]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="226" end="226" startBytecode="153" endBytecode="153" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 226]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="240" end="240" startBytecode="172" endBytecode="172" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 240]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="242" end="242" startBytecode="249" endBytecode="249" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 242]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="248" end="248" startBytecode="268" endBytecode="268" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 248]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="250" end="250" startBytecode="470" endBytecode="470" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 250]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="5fd1e374c6ba6a9b46c7a8a0c80d978e" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByEmail(String) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="isUserByEmail" signature="(Ljava/lang/String;)Z" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="401" end="439" startBytecode="0" endBytecode="1203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByEmail(String)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="406" end="406" startBytecode="17" endBytecode="17" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 406] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="407" end="407" startBytecode="24" endBytecode="24" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 407]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="415" end="415" startBytecode="184" endBytecode="184" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 415]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="429" end="429" startBytecode="203" endBytecode="203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 429]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="431" end="431" startBytecode="280" endBytecode="280" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 431]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="437" end="437" startBytecode="299" endBytecode="299" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 437]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="439" end="439" startBytecode="501" endBytecode="501" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 439]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="3ddd590a3e97c5be321e359b0fb09355" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserById(User) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="isUserById" signature="(Lcom/nixsolutions/laboratorythirteen/entity/User;)Z" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="317" end="355" startBytecode="0" endBytecode="1203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserById(User)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="322" end="322" startBytecode="17" endBytecode="17" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 322] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="323" end="323" startBytecode="24" endBytecode="24" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 323]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="331" end="331" startBytecode="184" endBytecode="184" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 331]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="345" end="345" startBytecode="203" endBytecode="203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 345]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="347" end="347" startBytecode="280" endBytecode="280" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 347]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="353" end="353" startBytecode="299" endBytecode="299" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 353]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="355" end="355" startBytecode="501" endBytecode="501" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 355]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="dfac019a18144fca978c76e2ef9ec69d" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByLogin(String) may fail to clean up java.sql.ResultSet</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="isUserByLogin" signature="(Ljava/lang/String;)Z" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="359" end="397" startBytecode="0" endBytecode="1203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByLogin(String)</Message>
+    </Method>
+    <Class classname="java.sql.ResultSet" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.ResultSet" start="4188" end="4289" sourcefile="ResultSet.java" sourcepath="java/sql/ResultSet.java">
+        <Message>At ResultSet.java:[lines 4188-4289]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.ResultSet</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="364" end="364" startBytecode="17" endBytecode="17" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 364] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="365" end="365" startBytecode="24" endBytecode="24" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 365]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="373" end="373" startBytecode="184" endBytecode="184" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 373]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="387" end="387" startBytecode="203" endBytecode="203" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 387]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="389" end="389" startBytecode="280" endBytecode="280" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 389]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="395" end="395" startBytecode="299" endBytecode="299" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 395]</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="397" end="397" startBytecode="501" endBytecode="501" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 397]</Message>
+    </SourceLine>
+    <String value="{ResultSet x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {ResultSet x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="53936bf299850a6aa3f6e45ff2182dc" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.insertUser(User, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="insertUser" signature="(Lcom/nixsolutions/laboratorythirteen/entity/User;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="444" end="454" startBytecode="0" endBytecode="204" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.insertUser(User, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="444" end="444" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 444] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="446" end="446" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 446]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="5433ee76d81ebdd1ca77659e474a9a33" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.removeUserById(User, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="removeUserById" signature="(Lcom/nixsolutions/laboratorythirteen/entity/User;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="475" end="478" startBytecode="0" endBytecode="112" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.removeUserById(User, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="475" end="475" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 475] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="476" end="476" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 476]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="419ae8dcad68d3fbb14d40deb8344ea7" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByEmail(String, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="selectUserByEmail" signature="(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="490" end="492" startBytecode="0" endBytecode="98" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByEmail(String, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="490" end="490" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 490] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="491" end="491" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 491]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="e0fd83d4beecee08b40fdcd60e84e286" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserById(User, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="selectUserById" signature="(Lcom/nixsolutions/laboratorythirteen/entity/User;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="497" end="499" startBytecode="0" endBytecode="101" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserById(User, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="497" end="497" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 497] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="498" end="498" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 498]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="3f5f9890bbf9fbf56e3f67b10b5e63dc" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByLogin(String, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="selectUserByLogin" signature="(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="483" end="485" startBytecode="0" endBytecode="98" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByLogin(String, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="483" end="483" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 483] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="484" end="484" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 484]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" rank="20" abbrev="OBL" category="EXPERIMENTAL" instanceHash="199ca9444fd88e9aa0f4a6879e8e4b5f" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to clean up stream or resource on checked exception</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.updateUserFields(User, Connection) may fail to clean up java.sql.Statement on checked exception</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="updateUserFields" signature="(Lcom/nixsolutions/laboratorythirteen/entity/User;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="459" end="470" startBytecode="0" endBytecode="220" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.updateUserFields(User, Connection)</Message>
+    </Method>
+    <Class classname="java.sql.Statement" role="CLASS_REFTYPE">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Reference type java.sql.Statement</Message>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING">
+      <Message>1 instances of obligation remaining</Message>
+    </Int>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="459" end="459" startBytecode="3" endBytecode="3" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_OBLIGATION_CREATED">
+      <Message>Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 459] is not discharged</Message>
+    </SourceLine>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="461" end="461" startBytecode="9" endBytecode="9" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" role="SOURCE_LINE_PATH_CONTINUES">
+      <Message>Path continues at JdbcUserDaoImpl.java:[line 461]</Message>
+    </SourceLine>
+    <String value="{Statement x 1}" role="STRING_REMAINING_OBLIGATIONS">
+      <Message>Remaining obligations: {Statement x 1}</Message>
+    </String>
+  </BugInstance>
+  <BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="2" rank="16" abbrev="ODR" category="BAD_PRACTICE" instanceHash="ad0ef7d5d8d94e456a01b2798abde8a0" instanceOccurrenceNum="0" instanceOccurrenceMax="0">
+    <ShortMessage>Method may fail to close database resource</ShortMessage>
+    <LongMessage>com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to close Statement</LongMessage>
+    <Class classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="11" end="499" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+        <Message>At JdbcUserDaoImpl.java:[lines 11-499]</Message>
+      </SourceLine>
+      <Message>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</Message>
+    </Class>
+    <Method classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" name="findAll" signature="()Ljava/util/List;" isStatic="false" primary="true">
+      <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" start="157" end="199" startBytecode="0" endBytecode="185" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java"/>
+      <Message>In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</Message>
+    </Method>
+    <Type descriptor="Ljava/sql/Statement;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.sql.Statement" start="1092" end="1368" sourcefile="Statement.java" sourcepath="java/sql/Statement.java">
+        <Message>At Statement.java:[lines 1092-1368]</Message>
+      </SourceLine>
+      <Message>Need to close java.sql.Statement </Message>
+    </Type>
+    <SourceLine classname="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" primary="true" start="162" end="162" startBytecode="21" endBytecode="21" sourcefile="JdbcUserDaoImpl.java" sourcepath="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java">
+      <Message>At JdbcUserDaoImpl.java:[line 162]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="BAD_PRACTICE">
+    <Description>Bad practice</Description>
+  </BugCategory>
+  <BugCategory category="MALICIOUS_CODE">
+    <Description>Malicious code vulnerability</Description>
+  </BugCategory>
+  <BugCategory category="EXPERIMENTAL">
+    <Description>Experimental</Description>
+  </BugCategory>
+  <BugPattern type="EI_EXPOSE_REP2" abbrev="EI2" category="MALICIOUS_CODE" cweid="374">
+    <ShortDescription>May expose internal representation by incorporating reference to mutable object</ShortDescription>
+    <Details><![CDATA[
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="EI_EXPOSE_REP" abbrev="EI" category="MALICIOUS_CODE" cweid="374">
+    <ShortDescription>May expose internal representation by returning reference to mutable object</ShortDescription>
+    <Details><![CDATA[
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="ODR_OPEN_DATABASE_RESOURCE" abbrev="ODR" category="BAD_PRACTICE">
+    <ShortDescription>Method may fail to close database resource</ShortDescription>
+    <Details><![CDATA[
+
+<p> The method creates a database resource (such as a database connection
+or row set), does not assign it to any
+fields, pass it to other methods, or return it, and does not appear to close
+the object on all paths out of the method.&nbsp; Failure to
+close database resources on all paths out of a method may
+result in poor performance, and could cause the application to
+have problems communicating with the database.
+</p>
+
+    ]]></Details>
+  </BugPattern>
+  <BugPattern type="OBL_UNSATISFIED_OBLIGATION" abbrev="OBL" category="EXPERIMENTAL">
+    <ShortDescription>Method may fail to clean up stream or resource</ShortDescription>
+    <Details><![CDATA[
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      ]]></Details>
+  </BugPattern>
+  <BugPattern type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" abbrev="OBL" category="EXPERIMENTAL">
+    <ShortDescription>Method may fail to clean up stream or resource on checked exception</ShortDescription>
+    <Details><![CDATA[
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      ]]></Details>
+  </BugPattern>
+  <BugCode abbrev="EI">
+    <Description>Method returning array may expose internal representation</Description>
+  </BugCode>
+  <BugCode abbrev="OBL">
+    <Description>Unsatisfied obligation to clean up stream or resource</Description>
+  </BugCode>
+  <BugCode abbrev="ODR">
+    <Description>Database resource not closed on all paths</Description>
+  </BugCode>
+  <BugCode abbrev="EI2">
+    <Description>Storing reference to mutable object</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="12">
+    <MissingClass>org.apache.commons.dbcp2.BasicDataSource</MissingClass>
+    <MissingClass>org.dbunit.Assertion</MissingClass>
+    <MissingClass>org.dbunit.IDatabaseTester</MissingClass>
+    <MissingClass>org.dbunit.JdbcDatabaseTester</MissingClass>
+    <MissingClass>org.dbunit.database.IDatabaseConnection</MissingClass>
+    <MissingClass>org.dbunit.dataset.IDataSet</MissingClass>
+    <MissingClass>org.dbunit.dataset.ITable</MissingClass>
+    <MissingClass>org.dbunit.dataset.xml.FlatXmlDataSetBuilder</MissingClass>
+    <MissingClass>org.dbunit.operation.DatabaseOperation</MissingClass>
+    <MissingClass>org.h2.tools.RunScript</MissingClass>
+    <MissingClass>org.slf4j.Logger</MissingClass>
+    <MissingClass>org.slf4j.LoggerFactory</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Thu, 20 Jul 2017 15:03:23 +0300" total_classes="9" referenced_classes="38" total_bugs="25" total_size="977" num_packages="4" java_version="1.8.0_131" vm_version="25.131-b11" cpu_seconds="11.59" clock_seconds="3.23" peak_mbytes="182.06" alloc_mbytes="1820.50" gc_seconds="0.04" priority_2="25">
+    <FileStats path="com/nixsolutions/laboratorythirteen/abstractclass/AbstractJdbcDao.java" bugCount="0" size="25"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/entity/Role.java" bugCount="0" size="47"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/entity/User.java" bugCount="4" size="125" bugHash="aed38468ffba71c4f62a58fc0ffc5e2f"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/interfaces/RoleDao.java" bugCount="0" size="5"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/interfaces/UserDao.java" bugCount="0" size="7"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImpl.java" bugCount="7" size="216" bugHash="b14515a6324e2c487803c6c016b31267"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/jdbc/JdbcRoleDaoImplTest.java" bugCount="0" size="85"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImpl.java" bugCount="14" size="362" bugHash="f8ab3008a389dcf83df996021cf2a5b3"/>
+    <FileStats path="com/nixsolutions/laboratorythirteen/jdbc/JdbcUserDaoImplTest.java" bugCount="0" size="105"/>
+    <PackageStats package="com.nixsolutions.laboratorythirteen.abstractclass" total_bugs="0" total_types="1" total_size="25">
+      <ClassStats class="com.nixsolutions.laboratorythirteen.abstractclass.AbstractJdbcDao" sourceFile="AbstractJdbcDao.java" interface="false" size="25" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.nixsolutions.laboratorythirteen.entity" total_bugs="4" total_types="2" total_size="172" priority_2="4">
+      <ClassStats class="com.nixsolutions.laboratorythirteen.entity.Role" sourceFile="Role.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="com.nixsolutions.laboratorythirteen.entity.User" sourceFile="User.java" interface="false" size="125" bugs="4" priority_2="4"/>
+    </PackageStats>
+    <PackageStats package="com.nixsolutions.laboratorythirteen.interfaces" total_bugs="0" total_types="2" total_size="12">
+      <ClassStats class="com.nixsolutions.laboratorythirteen.interfaces.RoleDao" sourceFile="RoleDao.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="com.nixsolutions.laboratorythirteen.interfaces.UserDao" sourceFile="UserDao.java" interface="true" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="com.nixsolutions.laboratorythirteen.jdbc" total_bugs="21" total_types="4" total_size="768" priority_2="21">
+      <ClassStats class="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl" sourceFile="JdbcRoleDaoImpl.java" interface="false" size="216" bugs="7" priority_2="7"/>
+      <ClassStats class="com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImplTest" sourceFile="JdbcRoleDaoImplTest.java" interface="false" size="85" bugs="0"/>
+      <ClassStats class="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl" sourceFile="JdbcUserDaoImpl.java" interface="false" size="362" bugs="14" priority_2="14"/>
+      <ClassStats class="com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest" sourceFile="JdbcUserDaoImplTest.java" interface="false" size="105" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="308" invocations="439" avgMicrosecondsPerInvocation="702" maxMicrosecondsPerInvocation="34537" standardDeviationMircosecondsPerInvocation="2055"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="163" invocations="116" avgMicrosecondsPerInvocation="1405" maxMicrosecondsPerInvocation="13134" standardDeviationMircosecondsPerInvocation="2434"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="141" invocations="116" avgMicrosecondsPerInvocation="1220" maxMicrosecondsPerInvocation="15255" standardDeviationMircosecondsPerInvocation="2200"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="133" invocations="442" avgMicrosecondsPerInvocation="301" maxMicrosecondsPerInvocation="6432" standardDeviationMircosecondsPerInvocation="337"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="128" invocations="92" avgMicrosecondsPerInvocation="1394" maxMicrosecondsPerInvocation="7452" standardDeviationMircosecondsPerInvocation="1897"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="108" invocations="101" avgMicrosecondsPerInvocation="1072" maxMicrosecondsPerInvocation="7677" standardDeviationMircosecondsPerInvocation="1636"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="94" invocations="92" avgMicrosecondsPerInvocation="1027" maxMicrosecondsPerInvocation="7791" standardDeviationMircosecondsPerInvocation="1660"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="94" invocations="38" avgMicrosecondsPerInvocation="2482" maxMicrosecondsPerInvocation="17005" standardDeviationMircosecondsPerInvocation="3809"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="80" invocations="101" avgMicrosecondsPerInvocation="792" maxMicrosecondsPerInvocation="13406" standardDeviationMircosecondsPerInvocation="1672"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.obl.ObligationAnalysis" totalMilliseconds="77" invocations="71" avgMicrosecondsPerInvocation="1091" maxMicrosecondsPerInvocation="12222" standardDeviationMircosecondsPerInvocation="2106"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="76" invocations="198" avgMicrosecondsPerInvocation="385" maxMicrosecondsPerInvocation="4774" standardDeviationMircosecondsPerInvocation="608"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="71" invocations="392" avgMicrosecondsPerInvocation="181" maxMicrosecondsPerInvocation="17679" standardDeviationMircosecondsPerInvocation="929"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="69" invocations="38" avgMicrosecondsPerInvocation="1825" maxMicrosecondsPerInvocation="7501" standardDeviationMircosecondsPerInvocation="2234"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="67" invocations="112" avgMicrosecondsPerInvocation="602" maxMicrosecondsPerInvocation="44641" standardDeviationMircosecondsPerInvocation="4195"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="49" invocations="79" avgMicrosecondsPerInvocation="623" maxMicrosecondsPerInvocation="3735" standardDeviationMircosecondsPerInvocation="894"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="47" invocations="9" avgMicrosecondsPerInvocation="5280" maxMicrosecondsPerInvocation="28005" standardDeviationMircosecondsPerInvocation="8558"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="41" invocations="73" avgMicrosecondsPerInvocation="572" maxMicrosecondsPerInvocation="19564" standardDeviationMircosecondsPerInvocation="2327"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="38" invocations="9" avgMicrosecondsPerInvocation="4276" maxMicrosecondsPerInvocation="20374" standardDeviationMircosecondsPerInvocation="6418"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="32" invocations="38" avgMicrosecondsPerInvocation="861" maxMicrosecondsPerInvocation="9086" standardDeviationMircosecondsPerInvocation="1594"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="28" invocations="38" avgMicrosecondsPerInvocation="741" maxMicrosecondsPerInvocation="5592" standardDeviationMircosecondsPerInvocation="1220"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="27" invocations="101" avgMicrosecondsPerInvocation="275" maxMicrosecondsPerInvocation="3065" standardDeviationMircosecondsPerInvocation="546"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="26" invocations="101" avgMicrosecondsPerInvocation="265" maxMicrosecondsPerInvocation="3837" standardDeviationMircosecondsPerInvocation="509"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="24" invocations="9" avgMicrosecondsPerInvocation="2768" maxMicrosecondsPerInvocation="15535" standardDeviationMircosecondsPerInvocation="4604"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindReturnRef" totalMilliseconds="24" invocations="9" avgMicrosecondsPerInvocation="2740" maxMicrosecondsPerInvocation="19653" standardDeviationMircosecondsPerInvocation="6015"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="24" invocations="38" avgMicrosecondsPerInvocation="645" maxMicrosecondsPerInvocation="6345" standardDeviationMircosecondsPerInvocation="1362"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="24" invocations="38" avgMicrosecondsPerInvocation="641" maxMicrosecondsPerInvocation="11934" standardDeviationMircosecondsPerInvocation="1929"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="24" invocations="38" avgMicrosecondsPerInvocation="635" maxMicrosecondsPerInvocation="3403" standardDeviationMircosecondsPerInvocation="913"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

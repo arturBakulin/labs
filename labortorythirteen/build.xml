@@ -1,0 +1,168 @@
+<project name="laboratorythirteen">
+	<property name="main.build.dir" value="build/classes" />
+	<property name="main.src.dir.abstractclass" value="src/main/java/com/nixsolutions/laboratorythirteen/abstractclass" />
+	<property name="main.src.dir.entity" value="src/main/java/com/nixsolutions/laboratorythirteen/entity" />
+	<property name="main.src.dir.interfaces" value="src/main/java/com/nixsolutions/laboratorythirteen/interfaces" />
+	<property name="main.src.dir.jdbc" value="src/main/java/com/nixsolutions/laboratorythirteen/jdbc" />
+	<property name="test.build.dir" value="build/tests" />
+	<property name="test.src.dir" value="src/test/java/com/nixsolutions/laboratorythirteen/jdbc" />
+	<property name="instrumented.test.dir" location="build/instrumented/com/nixsolutions/laboratorythirteen/jdbc" />
+	<property name="checkstyle.dir" value="lib/checkstyle-7.8-all.jar" />
+	<property name="junit.dir" value="lib/junit-4.12.jar" />
+	<property name="cobertura.dir" value="lib/cobertura-2.1.1" />
+	<property name="findbugs.dir" value="lib/findbugs-3.0.1" />
+	<property name="pmd.dir" value="lib/pmd-bin-5.7.0" />
+	<property name="report.checkstyle.dir" value="build/reports/checkstyle" />
+	<property name="report.junit.dir" value="build/reports/junit" />
+	<property name="report.cobertura.dir" location="build/reports/cobertura" />
+	<property name="report.temp.dir" value="build/temp" />
+	<property name="report.findbugs.dir" location="build/reports/findbugs" />
+	<property name="report.pmd.dir" location="build/reports/pmd" />
+	<property name="cobertura.ser.file" location="${report.temp.dir}/cobertura.ser" />
+	<property name="instrumented.dir" location="build/instrumented" />
+	<path id="classpath.src">
+		<pathelement location="${main.src.dir.abstractclass}" />
+		<pathelement location="${main.src.dir.entity}" />
+		<pathelement location="${main.src.dir.interfaces}" />
+		<pathelement location="${main.src.dir.jdbc}" />
+	</path>
+	<path id="classpath.test">
+		<pathelement location="lib/junit-4.12.jar" />
+		<pathelement location="lib/hamcrest-core-1.3.jar" />
+		<pathelement location="lib/dbunit-2.5.3.jar" />
+		<pathelement location="lib/h2-1.4.196.jar" />
+		<pathelement location="lib/commons-dbcp2-2.1.1.jar" />
+		<pathelement location="lib/commons-pool2-2.4.2.jar" />
+		<pathelement location="lib/commons-logging-1.2.jar" />
+		<pathelement location="${main.build.dir}" />
+	</path>
+	<path id="cobertura.classpath">
+		<path refid="classpath.test" />
+		<fileset dir="${cobertura.dir}">
+			<include name="cobertura-2.1.1.jar" />
+			<include name="lib/**/*.jar" />
+		</fileset>
+	</path>
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+	<path id="libs">
+		<fileset dir="lib" />
+	</path>
+	<target name="compile">
+		<mkdir dir="${main.build.dir}" />
+		<javac debug="true" destdir="${main.build.dir}" includeantruntime="false" classpathref="libs">
+			<src refid="classpath.src" />
+		</javac>
+	</target>
+
+	<target name="test-compile" depends="compile">
+		<mkdir dir="${test.build.dir}" />
+		<javac debug="true" srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false" classpathref="libs">
+			<classpath refid="classpath.test" />
+		</javac>
+	</target>
+	<target name="clean">
+		<delete dir="build" />
+	</target>
+	<target name="jar" depends="compile">
+		<jar destfile="build/SourceCode.jar" basedir="${main.build.dir}">
+		</jar>
+	</target>
+	<target name="test" depends="compile, test-compile, cobertura-instrument">
+		<mkdir dir="${report.cobertura.dir}" />
+		<mkdir dir="${report.temp.dir}" />
+		<junit printsummary="yes" haltonfailure="no" fork="yes">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${cobertura.ser.file}" />
+			<classpath location="${instrumented.dir}" />
+			<classpath location="classpath.test" />
+			<classpath refid="cobertura.classpath" />
+			<formatter type="plain" />
+			<formatter type="xml" />
+			<batchtest todir="${report.temp.dir}">
+				<fileset dir="${test.build.dir}" includes="**/*Test.class" />
+			</batchtest>
+		</junit>
+	</target>
+	<target name="testreport" depends="test">
+		<delete dir="${report.junit.dir}" />
+		<mkdir dir="${report.junit.dir}" />
+		<junitreport todir="${report.temp.dir}">
+			<fileset dir="${report.temp.dir}">
+				<include name="*.xml" />
+			</fileset>
+			<report format="frames" todir="${report.junit.dir}" />
+		</junitreport>
+	</target>
+	<target name="cobertura-instrument" depends="test-compile">
+		<mkdir dir="${report.temp.dir}" />
+		<mkdir dir="${instrumented.dir}" />
+		<cobertura-instrument todir="${instrumented.dir}" datafile="${cobertura.ser.file}">
+			<fileset dir="${test.build.dir}">
+				<include name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+		<copy todir="${instrumented.test.dir}">
+			<fileset dir="${test.src.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${instrumented.dir}">
+			<fileset dir="src/test/resources" includes="**/*config.properties"  />
+			<fileset dir="src/test/resources" includes="**/*.xml" />
+		</copy>
+	</target>
+	<target name="checkstyle" depends="findbugs, pmd">
+		<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties">
+			<classpath>
+				<pathelement location="${checkstyle.dir}" />
+			</classpath>
+		</taskdef>
+		<mkdir dir="${report.checkstyle.dir}" />
+		<checkstyle config="src/test/resources/style.xml" failureProperty="checkstyle.failure" failOnViolation="false">
+			<formatter type="xml" tofile="${report.temp.dir}/checkstyle_report.xml" />
+			<fileset dir="src/main/java/com/nixsolutions/laboratorythirteen" includes="**/*.java" />
+		</checkstyle>
+		<xslt in="${report.temp.dir}/checkstyle_report.xml" out="${report.checkstyle.dir}/checkstyle_report.html" style="src/test/resources/checkstyle-noframes-sorted.xsl" />
+	</target>
+	<target name="findbugs" depends="compile, test-compile">
+		<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpath="${findbugs.dir}/lib/findbugs-ant.jar" />
+		<mkdir dir="${report.temp.dir}" />
+		<mkdir dir="${report.findbugs.dir}" />
+		<findbugs home="${findbugs.dir}" workHard="true" output="xml:withMessages" outputFile="${report.temp.dir}/findbugs.xml">
+			<class location="${main.build.dir}" />
+			<class location="${test.build.dir}" />
+			<auxClasspath>
+				<fileset file="${junit.dir}" />
+			</auxClasspath>
+		</findbugs>
+		<xslt in="${report.temp.dir}/findbugs.xml" style="${findbugs.dir}/src/xsl/fancy.xsl" out="${report.findbugs.dir}/findbugs-default.html" />
+	</target>
+	<path id="pmd.classpath">
+		<pathelement location="${build}" />
+		<fileset dir="${pmd.dir}/lib/">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath" />
+	<target name="pmd">
+		<mkdir dir="${report.pmd.dir}" />
+		<pmd rulesetfiles="rulesets/java/design.xml">
+			<formatter type="net.sourceforge.pmd.renderers.HTMLRenderer" toFile="${report.pmd.dir}/pmd_report.html" />
+			<fileset dir="src/main/java/com/nixsolutions/laboratorythirteen">
+				<include name="**/*.java" />
+			</fileset>
+		</pmd>
+	</target>
+	<target name="cobertura" depends="test">
+		<cobertura-report format="html" datafile="${cobertura.ser.file}" destdir="${report.cobertura.dir}">
+			<fileset dir="${instrumented.dir}">
+				<include name="**/*.java" />
+			</fileset>
+		</cobertura-report>
+	</target>
+	<target name="all" description="Run the build" depends="clean,
+		 				 jar,
+						 cobertura,
+		 				 testreport,
+		 				 checkstyle">
+	</target>
+</project>

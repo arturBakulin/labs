@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>
+        FindBugs (3.0.1)
+         Analysis for
+         </title>
+<script type="text/javascript">
+         function show(foo) {
+            document.getElementById(foo).style.display="block";
+         }
+         function hide(foo) {
+            document.getElementById(foo).style.display="none";
+         }
+         function toggle(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               show(foo);
+            } else {
+               if( document.getElementById(foo).style.display == "block") {
+                  hide(foo);
+               } else {
+                  show(foo);
+               }
+            }
+         }
+
+         function showmenu(foo) {
+            if( document.getElementById(foo).style.display == "none") {
+               hide("bug-summary");
+               document.getElementById("bug-summary-tab").className="menu-tab";
+               hide("analysis-data");
+               document.getElementById("analysis-data-tab").className="menu-tab";
+               //hide("list-by-b-t");
+               //document.getElementById("list-by-b-t-tab").className="menu-tab";
+               hide("list-by-package");
+               document.getElementById("list-by-package-tab").className="menu-tab";
+               hide("list-by-category");
+               document.getElementById("list-by-category-tab").className="menu-tab";
+               document.getElementById(foo+"-tab").className="menu-tab-selected";
+               show(foo);
+
+            }
+            // else menu already selected!
+         }
+         function showbug(buguid, list) {
+            var bugplaceholder   = document.getElementById(buguid+'-ph-'+list);
+            var bug              = document.getElementById(buguid);
+
+            if ( bugplaceholder==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bugplaceholder==null');
+               return;
+            }
+            if ( bug==null) {
+               alert(buguid+'-ph-'+list+' - '+buguid+' - bug==null');
+               return;
+            }
+
+            var oldBug = bugplaceholder.innerHTML;
+            var newBug = bug.innerHTML;
+            //alert(oldBug);
+            //alert(newBug);
+            toggle(buguid+'-ph-'+list);
+            bugplaceholder.innerHTML = newBug;
+         }
+      </script>
+<script type="text/javascript">
+     /*  */
+         // Extended Tooltip Javascript
+         // copyright 9th August 2002, 3rd July 2005
+         // by Stephen Chapman, Felgall Pty Ltd
+
+         // permission is granted to use this javascript provided that the below code is not altered
+         var DH = 0;var an = 0;var al = 0;var ai = 0;if (document.getElementById) {ai = 1; DH = 1;}else {if (document.all) {al = 1; DH = 1;} else { browserVersion = parseInt(navigator.appVersion); if (navigator.appName.indexOf('Netscape') != -1) if (browserVersion == 4) {an = 1; DH = 1;}}}
+         function fd(oi, wS) {if (ai) return wS ? document.getElementById(oi).style:document.getElementById(oi); if (al) return wS ? document.all[oi].style: document.all[oi]; if (an) return document.layers[oi];}
+         function pw() {return window.innerWidth != null? window.innerWidth: document.body.clientWidth != null? document.body.clientWidth:null;}
+         function mouseX(evt) {if (evt.pageX) return evt.pageX; else if (evt.clientX)return evt.clientX + (document.documentElement.scrollLeft ?  document.documentElement.scrollLeft : document.body.scrollLeft); else return null;}
+         function mouseY(evt) {if (evt.pageY) return evt.pageY; else if (evt.clientY)return evt.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop); else return null;}
+         function popUp(evt,oi) {if (DH) {var wp = pw(); ds = fd(oi,1); dm = fd(oi,0); st = ds.visibility; if (dm.offsetWidth) ew = dm.offsetWidth; else if (dm.clip.width) ew = dm.clip.width; if (st == "visible" || st == "show") { ds.visibility = "hidden"; } else {tv = mouseY(evt) + 20; lv = mouseX(evt) - (ew/4); if (lv < 2) lv = 2; else if (lv + ew > wp) lv -= ew/2; if (!an) {lv += 'px';tv += 'px';} ds.left = lv; ds.top = tv; ds.visibility = "visible";}}}
+  /*  */
+</script>
+<style type="text/css">
+         html, body {
+            background-color: #ffffff;
+         }
+         a, a:link , a:active, a:visited, a:hover {
+            text-decoration: none; color: black;
+         }
+         .b-r a {
+            text-decoration: underline; color: blue;
+         }
+         div, span {
+            vertical-align: top;
+         }
+         p {
+            margin: 0px;
+         }
+         h1 {
+            /*font-size: 14pt;*/
+            color: red;
+         }
+         #menu {
+            margin-bottom: 10px;
+         }
+         #menu ul {
+            margin-left: 0;
+            padding-left: 0;
+            display: inline;
+         }
+         #menu ul li {
+            margin-left: 0;
+            margin-bottom: 0;
+            padding: 2px 15px 5px;
+            border: 1px solid #000;
+            list-style: none;
+            display: inline;
+         }
+         #menu ul li.here {
+            border-bottom: 1px solid #ffc;
+            list-style: none;
+            display: inline;
+         }
+         .menu-tab {
+            background: white;
+         }
+         .menu-tab:hover {
+            background: grey;
+         }
+         .menu-tab-selected {
+            background: #aaaaaa;
+         }
+         #analysis-data ul {
+            margin-left: 15px;
+         }
+         #analyzed-files, #used-libraries, #analysis-error {
+           margin: 2px;
+           border: 1px black solid;
+           padding: 2px;
+           float: left;
+           overflow:auto;
+         }
+         #analyzed-files {
+           width: 25%;
+         }
+         #used-libraries {
+           width: 25%;
+         }
+         #analysis-error {
+           width: 40%;
+         }
+         div.summary {
+            width:100%;
+            text-align:left;
+         }
+         .summary table {
+            border:1px solid black;
+         }
+         .summary th {
+            background: #aaaaaa;
+            color: white;
+         }
+         .summary th, .summary td {
+            padding: 2px 4px 2px 4px;
+         }
+         .summary-name {
+            background: #eeeeee;
+            text-align:left;
+         }
+         .summary-size {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-ratio {
+            background: #eeeeee;
+            text-align:center;
+         }
+         .summary-priority-all {
+            background: #dddddd;
+            text-align:center;
+         }
+         .summary-priority-1 {
+            background: red;
+            text-align:center;
+         }
+         .summary-priority-2 {
+            background: orange;
+            text-align:center;
+         }
+         .summary-priority-3 {
+            background: green;
+            text-align:center;
+         }
+         .summary-priority-4 {
+            background: blue;
+            text-align:center;
+         }
+         .ob {
+            border: 1px solid black;
+            margin: 10px;
+         }
+         .ob-t {
+            border-bottom: 1px solid #000000; font-size: 12pt; font-weight: bold;
+            background: #cccccc; margin: 0; padding: 0 5px 0 5px;
+         }
+         .t-h {
+            font-weight: normal;
+         }
+         .ib-1, .ib-2 {
+            margin: 0 0 0 10px;
+         }
+         .ib-1-t, .ib-2-t {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+            margin: 0; padding: 0 5px 0 5px;
+            font-size: 12pt; font-weight: bold; background: #cccccc;
+         }
+         .bb {
+            border-bottom: 1px solid #000000; border-left: 1px solid #000000;
+         }
+         .b-1 {
+            background: red; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-2 {
+            background: orange; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-3 {
+            background: green; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-4 {
+            background: blue; height: 0.5em; width: 1em;
+            margin-right: 0.5em;
+         }
+         .b-t {
+         }
+         .b-r {
+            font-size: 10pt; font-weight: bold; padding: 0 0 0 60px;
+         }
+         .b-d {
+            font-weight: normal; background: #eeeee0;
+            padding: 0 5px 0 5px; margin: 0px;
+         }
+         .bug-placeholder {
+            top:140px;
+            border:1px solid black;
+            display:none;
+         }
+         .tip {
+            border:solid 1px #666666;
+            width:600px;
+            padding:3px;
+            position:absolute;
+            z-index:100;
+            visibility:hidden;
+            color:#333333;
+            top:20px;
+            left:90px;
+            background-color:#ffffcc;
+            layer-background-color:#ffffcc;
+         }
+
+
+      </style>
+</head>
+<body>
+<div id="content">
+<h1>
+         FindBugs (3.0.1)
+         Analysis for
+         </h1>
+<div id="menu">
+<ul>
+<li id="bug-summary-tab" class="menu-tab-selected" onclick="showmenu('bug-summary');return false;">
+<a href="" onclick="return false;">Bug Summary</a>
+</li>
+<li id="analysis-data-tab" class="menu-tab" onclick="showmenu('analysis-data');return false;">
+<a href="" onclick="return false;">Analysis Information</a>
+</li>
+<li id="list-by-category-tab" class="menu-tab" onclick="showmenu('list-by-category');return false;">
+<a href="" onclick="return false;">List bugs by bug category</a>
+</li>
+<li id="list-by-package-tab" class="menu-tab" onclick="showmenu('list-by-package');return false;">
+<a href="" onclick="return false;">List bugs by package</a>
+</li>
+</ul>
+</div>
+<div class="summary" id="bug-summary">
+<h2>FindBugs Analysis generated at: Thu, 20 Jul 2017 15:03:23 +0300</h2>
+<table>
+<tr>
+<th>Package</th>
+<th>Code Size</th>
+<th>Bugs</th>
+<th>High Prio Bugs</th>
+<th>Medium Prio Bugs</th>
+<th>Low Prio Bugs</th>
+<th>Exp. Bugs</th>
+<th>Ratio</th>
+</tr>
+<tr>
+<td class="summary-name">
+            Overall
+            (4 packages),
+            (9 classes)
+         </td>
+<td class="summary-size">977</td>
+<td class="summary-priority-all">25</td>
+<td class="summary-priority-1"/>
+<td class="summary-priority-2">25</td>
+<td class="summary-priority-3"/>
+<td class="summary-priority-4"/>
+<td class="summary-ratio"/>
+</tr>
+<tr>
+<td class="summary-name">com.nixsolutions.laboratorythirteen.entity</td>
+<td class="summary-size">172</td>
+<td class="summary-priority-all">4</td>
+<td class="summary-priority-1"/>
+<td class="summary-priority-2">4</td>
+<td class="summary-priority-3"/>
+<td class="summary-priority-4"/>
+<td class="summary-ratio"/>
+</tr>
+<tr>
+<td class="summary-name">com.nixsolutions.laboratorythirteen.jdbc</td>
+<td class="summary-size">768</td>
+<td class="summary-priority-all">21</td>
+<td class="summary-priority-1"/>
+<td class="summary-priority-2">21</td>
+<td class="summary-priority-3"/>
+<td class="summary-priority-4"/>
+<td class="summary-ratio"/>
+</tr>
+</table>
+</div>
+<div id="analysis-data" style="display:none;">
+<div id="analyzed-files">
+<h3>Analyzed Files:</h3>
+<ul>
+<li>/Users/grigoriy/Documents/workspace/labortorythirteen/build/classes</li>
+<li>/Users/grigoriy/Documents/workspace/labortorythirteen/build/tests</li>
+</ul>
+</div>
+<div id="used-libraries">
+<h3>Used Libraries:</h3>
+<ul>
+<li>/Users/grigoriy/Documents/workspace/labortorythirteen/lib/junit-4.12.jar</li>
+</ul>
+</div>
+<div id="analysis-error">
+<h3>Analysis Errors:</h3>
+<ul>
+<li>Missing ref classes for analysis:
+                     <ul>
+<li>org.apache.commons.dbcp2.BasicDataSource</li>
+<li>org.dbunit.Assertion</li>
+<li>org.dbunit.IDatabaseTester</li>
+<li>org.dbunit.JdbcDatabaseTester</li>
+<li>org.dbunit.database.IDatabaseConnection</li>
+<li>org.dbunit.dataset.IDataSet</li>
+<li>org.dbunit.dataset.ITable</li>
+<li>org.dbunit.dataset.xml.FlatXmlDataSetBuilder</li>
+<li>org.dbunit.operation.DatabaseOperation</li>
+<li>org.h2.tools.RunScript</li>
+<li>org.slf4j.Logger</li>
+<li>org.slf4j.LoggerFactory</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="list-by-category" class="data-box" style="display:none;">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE');return false;">Bad practice
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-ODR');return false;">ODR: Database resource not closed on all paths
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-ODR">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-BAD_PRACTICE-and-code-ODR-and-bug-ODR_OPEN_DATABASE_RESOURCE');return false;" onmouseout="popUp(event,'tip-ODR_OPEN_DATABASE_RESOURCE');" onmouseover="popUp(event,'tip-ODR_OPEN_DATABASE_RESOURCE');">Method may fail to close database resource&nbsp;&nbsp;
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-BAD_PRACTICE-and-code-ODR-and-bug-ODR_OPEN_DATABASE_RESOURCE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ad0ef7d5d8d94e456a01b2798abde8a0-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">ODR: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-ad0ef7d5d8d94e456a01b2798abde8a0-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-EXPERIMENTAL');return false;">Experimental
+            (20:
+            <span class="t-h">0/20/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-EXPERIMENTAL">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-EXPERIMENTAL-and-code-OBL');return false;">OBL: Unsatisfied obligation to clean up stream or resource
+            (20:
+            <span class="t-h">0/20/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-EXPERIMENTAL-and-code-OBL">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-EXPERIMENTAL-and-code-OBL-and-bug-OBL_UNSATISFIED_OBLIGATION');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION');" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION');">Method may fail to clean up stream or resource&nbsp;&nbsp;
+            (9:
+            <span class="t-h">0/9/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-EXPERIMENTAL-and-code-OBL-and-bug-OBL_UNSATISFIED_OBLIGATION">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-cd21decd17e3e65db0bc74db1cab7df0-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-cd21decd17e3e65db0bc74db1cab7df0-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a17b1ea0caa216cc61655e4a2d7f994e-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-a17b1ea0caa216cc61655e4a2d7f994e-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5f2819694ac32cf943e68410a91d294d-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5f2819694ac32cf943e68410a91d294d-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b5938dcec252a39382f887063608877d-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-b5938dcec252a39382f887063608877d-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a68bfd3b122fbcdf72cea8dff3b23fd1-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-a68bfd3b122fbcdf72cea8dff3b23fd1-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ba061b233e6ae606f8ffcf2b6d1c57d5-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-ba061b233e6ae606f8ffcf2b6d1c57d5-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5fd1e374c6ba6a9b46c7a8a0c80d978e-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5fd1e374c6ba6a9b46c7a8a0c80d978e-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3ddd590a3e97c5be321e359b0fb09355-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-3ddd590a3e97c5be321e359b0fb09355-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-dfac019a18144fca978c76e2ef9ec69d-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-dfac019a18144fca978c76e2ef9ec69d-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-EXPERIMENTAL-and-code-OBL-and-bug-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE');" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE');">Method may fail to clean up stream or resource on checked exception&nbsp;&nbsp;
+            (11:
+            <span class="t-h">0/11/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-EXPERIMENTAL-and-code-OBL-and-bug-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-741d1eedd4e8d1024f061a73483d813e-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-741d1eedd4e8d1024f061a73483d813e-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-558cbdf7c0c8aafaaf259456c9b72583-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-558cbdf7c0c8aafaaf259456c9b72583-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5a3660f6ef893f525978aa063b0a6c3a-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-5a3660f6ef893f525978aa063b0a6c3a-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3cf8dfd8b76b1fe8133b8ff4685fc9d6-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-3cf8dfd8b76b1fe8133b8ff4685fc9d6-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2b814eb730448fb2be8020a55b57840b-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-2b814eb730448fb2be8020a55b57840b-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-53936bf299850a6aa3f6e45ff2182dc-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-53936bf299850a6aa3f6e45ff2182dc-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5433ee76d81ebdd1ca77659e474a9a33-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5433ee76d81ebdd1ca77659e474a9a33-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-419ae8dcad68d3fbb14d40deb8344ea7-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-419ae8dcad68d3fbb14d40deb8344ea7-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-e0fd83d4beecee08b40fdcd60e84e286-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-e0fd83d4beecee08b40fdcd60e84e286-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3f5f9890bbf9fbf56e3f67b10b5e63dc-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-3f5f9890bbf9fbf56e3f67b10b5e63dc-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-199ca9444fd88e9aa0f4a6879e8e4b5f-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-199ca9444fd88e9aa0f4a6879e8e4b5f-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('category-MALICIOUS_CODE');return false;">Malicious code vulnerability
+            (4:
+            <span class="t-h">0/4/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-MALICIOUS_CODE">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-MALICIOUS_CODE-and-code-EI');return false;">EI: Method returning array may expose internal representation
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-MALICIOUS_CODE-and-code-EI">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-MALICIOUS_CODE-and-code-EI-and-bug-EI_EXPOSE_REP');return false;" onmouseout="popUp(event,'tip-EI_EXPOSE_REP');" onmouseover="popUp(event,'tip-EI_EXPOSE_REP');">May expose internal representation by returning reference to mutable object&nbsp;&nbsp;
+            (1:
+            <span class="t-h">0/1/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-MALICIOUS_CODE-and-code-EI-and-bug-EI_EXPOSE_REP">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-c7b80d775e31e6c4f5cfc7a12bc1c63a-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-c7b80d775e31e6c4f5cfc7a12bc1c63a-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('category-MALICIOUS_CODE-and-code-EI2');return false;">EI2: Storing reference to mutable object
+            (3:
+            <span class="t-h">0/3/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-MALICIOUS_CODE-and-code-EI2">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('category-MALICIOUS_CODE-and-code-EI2-and-bug-EI_EXPOSE_REP2');return false;" onmouseout="popUp(event,'tip-EI_EXPOSE_REP2');" onmouseover="popUp(event,'tip-EI_EXPOSE_REP2');">May expose internal representation by incorporating reference to mutable object&nbsp;&nbsp;
+            (3:
+            <span class="t-h">0/3/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="category-MALICIOUS_CODE-and-code-EI2-and-bug-EI_EXPOSE_REP2">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-e4b86ef258b9cc285d1aef331b494b26-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-e4b86ef258b9cc285d1aef331b494b26-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3061bd9a6fd12552a6586a9e6645bfbd-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-3061bd9a6fd12552a6586a9e6645bfbd-0-ph-c">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-37601dd3fb23cc167693f77d644d5040-0','c');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-37601dd3fb23cc167693f77d644d5040-0-ph-c">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="list-by-package" class="data-box" style="display:none;">
+<span class="b-1">&nbsp;&nbsp;</span> High Prio
+   <span class="b-2">&nbsp;&nbsp;</span> Medium Prio
+   <span class="b-3">&nbsp;&nbsp;</span> Low Prio
+   <span class="b-4">&nbsp;&nbsp;</span> Exp.
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.entity');return false;">com.nixsolutions.laboratorythirteen.entity
+            (4:
+            <span class="t-h">0/4/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.entity">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User');return false;">com.nixsolutions.laboratorythirteen.entity.User  (4:
+            <span class="t-h">0/4/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User-and-type-EI_EXPOSE_REP');return false;" onmouseout="popUp(event,'tip-EI_EXPOSE_REP')" onmouseover="popUp(event,'tip-EI_EXPOSE_REP')">May expose internal representation by returning reference to mutable object&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User-and-type-EI_EXPOSE_REP">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-c7b80d775e31e6c4f5cfc7a12bc1c63a-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-c7b80d775e31e6c4f5cfc7a12bc1c63a-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User-and-type-EI_EXPOSE_REP2');return false;" onmouseout="popUp(event,'tip-EI_EXPOSE_REP2')" onmouseover="popUp(event,'tip-EI_EXPOSE_REP2')">May expose internal representation by incorporating reference to mutable object&nbsp;&nbsp;
+            (3)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.entity-and-class-com.nixsolutions.laboratorythirteen.entity.User-and-type-EI_EXPOSE_REP2">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-e4b86ef258b9cc285d1aef331b494b26-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-e4b86ef258b9cc285d1aef331b494b26-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3061bd9a6fd12552a6586a9e6645bfbd-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-3061bd9a6fd12552a6586a9e6645bfbd-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-37601dd3fb23cc167693f77d644d5040-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">EI2: </span>In class com.nixsolutions.laboratorythirteen.entity.User</a>
+<div style="display:none;" id="b-uid-37601dd3fb23cc167693f77d644d5040-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ob">
+<div class="ob-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc');return false;">com.nixsolutions.laboratorythirteen.jdbc
+            (21:
+            <span class="t-h">0/21/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc">
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl');return false;">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl  (7:
+            <span class="t-h">0/7/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION')" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION')">Method may fail to clean up stream or resource&nbsp;&nbsp;
+            (2)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-cd21decd17e3e65db0bc74db1cab7df0-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-cd21decd17e3e65db0bc74db1cab7df0-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a17b1ea0caa216cc61655e4a2d7f994e-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-a17b1ea0caa216cc61655e4a2d7f994e-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE')" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE')">Method may fail to clean up stream or resource on checked exception&nbsp;&nbsp;
+            (5)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-741d1eedd4e8d1024f061a73483d813e-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-741d1eedd4e8d1024f061a73483d813e-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-558cbdf7c0c8aafaaf259456c9b72583-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-558cbdf7c0c8aafaaf259456c9b72583-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5a3660f6ef893f525978aa063b0a6c3a-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-5a3660f6ef893f525978aa063b0a6c3a-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3cf8dfd8b76b1fe8133b8ff4685fc9d6-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-3cf8dfd8b76b1fe8133b8ff4685fc9d6-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-2b814eb730448fb2be8020a55b57840b-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</a>
+<div style="display:none;" id="b-uid-2b814eb730448fb2be8020a55b57840b-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ib-1">
+<div class="ib-1-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl');return false;">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl  (14:
+            <span class="t-h">0/14/0/0</span>)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl">
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION')" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION')">Method may fail to clean up stream or resource&nbsp;&nbsp;
+            (7)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5f2819694ac32cf943e68410a91d294d-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5f2819694ac32cf943e68410a91d294d-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-b5938dcec252a39382f887063608877d-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-b5938dcec252a39382f887063608877d-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-a68bfd3b122fbcdf72cea8dff3b23fd1-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-a68bfd3b122fbcdf72cea8dff3b23fd1-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ba061b233e6ae606f8ffcf2b6d1c57d5-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-ba061b233e6ae606f8ffcf2b6d1c57d5-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5fd1e374c6ba6a9b46c7a8a0c80d978e-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5fd1e374c6ba6a9b46c7a8a0c80d978e-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3ddd590a3e97c5be321e359b0fb09355-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-3ddd590a3e97c5be321e359b0fb09355-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-dfac019a18144fca978c76e2ef9ec69d-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-dfac019a18144fca978c76e2ef9ec69d-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE');return false;" onmouseout="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE')" onmouseover="popUp(event,'tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE')">Method may fail to clean up stream or resource on checked exception&nbsp;&nbsp;
+            (6)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-53936bf299850a6aa3f6e45ff2182dc-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-53936bf299850a6aa3f6e45ff2182dc-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-5433ee76d81ebdd1ca77659e474a9a33-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-5433ee76d81ebdd1ca77659e474a9a33-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-419ae8dcad68d3fbb14d40deb8344ea7-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-419ae8dcad68d3fbb14d40deb8344ea7-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-e0fd83d4beecee08b40fdcd60e84e286-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-e0fd83d4beecee08b40fdcd60e84e286-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-3f5f9890bbf9fbf56e3f67b10b5e63dc-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-3f5f9890bbf9fbf56e3f67b10b5e63dc-0-ph-p">
+         loading...
+      </div>
+</div>
+<div class="bb">
+<a href="" onclick="showbug('b-uid-199ca9444fd88e9aa0f4a6879e8e4b5f-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">OBL: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-199ca9444fd88e9aa0f4a6879e8e4b5f-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+<div class="ib-2">
+<div class="ib-2-t">
+<a href="" onclick="toggle('package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-ODR_OPEN_DATABASE_RESOURCE');return false;" onmouseout="popUp(event,'tip-ODR_OPEN_DATABASE_RESOURCE')" onmouseover="popUp(event,'tip-ODR_OPEN_DATABASE_RESOURCE')">Method may fail to close database resource&nbsp;&nbsp;
+            (1)
+         </a>
+</div>
+<div style="display:none;" id="package-com.nixsolutions.laboratorythirteen.jdbc-and-class-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl-and-type-ODR_OPEN_DATABASE_RESOURCE">
+<div class="bb">
+<a href="" onclick="showbug('b-uid-ad0ef7d5d8d94e456a01b2798abde8a0-0','p');return false;">
+<span class="b-2">&nbsp;&nbsp;</span>
+<span class="b-t">ODR: </span>In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</a>
+<div style="display:none;" id="b-uid-ad0ef7d5d8d94e456a01b2798abde8a0-0-ph-p">
+         loading...
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tip-EI_EXPOSE_REP2" class="tip">
+<b>EI2 / EI_EXPOSE_REP2</b>
+<br/>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    </div>
+<div id="tip-EI_EXPOSE_REP" class="tip">
+<b>EI / EI_EXPOSE_REP</b>
+<br/>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    </div>
+<div id="tip-ODR_OPEN_DATABASE_RESOURCE" class="tip">
+<b>ODR / ODR_OPEN_DATABASE_RESOURCE</b>
+<br/>
+
+<p> The method creates a database resource (such as a database connection
+or row set), does not assign it to any
+fields, pass it to other methods, or return it, and does not appear to close
+the object on all paths out of the method.&nbsp; Failure to
+close database resources on all paths out of a method may
+result in poor performance, and could cause the application to
+have problems communicating with the database.
+</p>
+
+    </div>
+<div id="tip-OBL_UNSATISFIED_OBLIGATION" class="tip">
+<b>OBL / OBL_UNSATISFIED_OBLIGATION</b>
+<br/>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      </div>
+<div id="tip-OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" class="tip">
+<b>OBL / OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE</b>
+<br/>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      </div>
+<div style="display:none;" id="b-uid-c7b80d775e31e6c4f5cfc7a12bc1c63a-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.entity.User</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.entity.User.getBirhday()</div>
+<div class="b-r">Field com.nixsolutions.laboratorythirteen.entity.User.birthday</div>
+<div class="b-r">At User.java:[line 158]</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.entity.User.getBirhday() may expose internal representation by returning User.birthday</div>
+</div>
+<div style="display:none;" id="b-uid-e4b86ef258b9cc285d1aef331b494b26-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.entity.User</div>
+<div class="b-r">In method new com.nixsolutions.laboratorythirteen.entity.User(long, String, String, String, String, String, Date, long)</div>
+<div class="b-r">Field com.nixsolutions.laboratorythirteen.entity.User.birthday</div>
+<div class="b-r">Local variable named birthday</div>
+<div class="b-r">At User.java:[line 134]</div>
+<div class="b-d">new com.nixsolutions.laboratorythirteen.entity.User(long, String, String, String, String, String, Date, long) may expose internal representation by storing an externally mutable object into User.birthday</div>
+</div>
+<div style="display:none;" id="b-uid-3061bd9a6fd12552a6586a9e6645bfbd-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.entity.User</div>
+<div class="b-r">In method new com.nixsolutions.laboratorythirteen.entity.User(String, String, String, String, String, Date, long)</div>
+<div class="b-r">Field com.nixsolutions.laboratorythirteen.entity.User.birthday</div>
+<div class="b-r">Local variable named birthday</div>
+<div class="b-r">At User.java:[line 146]</div>
+<div class="b-d">new com.nixsolutions.laboratorythirteen.entity.User(String, String, String, String, String, Date, long) may expose internal representation by storing an externally mutable object into User.birthday</div>
+</div>
+<div style="display:none;" id="b-uid-37601dd3fb23cc167693f77d644d5040-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.entity.User</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.entity.User.setBirhday(Date)</div>
+<div class="b-r">Field com.nixsolutions.laboratorythirteen.entity.User.birthday</div>
+<div class="b-r">Local variable named birhday</div>
+<div class="b-r">At User.java:[line 162]</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.entity.User.setBirhday(Date) may expose internal representation by storing an externally mutable object into User.birthday</div>
+</div>
+<div style="display:none;" id="b-uid-cd21decd17e3e65db0bc74db1cab7df0-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.findByName(String)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 166] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 167]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 170]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 176]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 190]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 192]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 198]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 200]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.findByName(String) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-a17b1ea0caa216cc61655e4a2d7f994e-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.isRoleExist(Role)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 233] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 234]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 242]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 256]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 258]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 264]</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 266]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.isRoleExist(Role) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-741d1eedd4e8d1024f061a73483d813e-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.deleteRoleById(Role, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 295] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 296]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.deleteRoleById(Role, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-558cbdf7c0c8aafaaf259456c9b72583-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.insertRole(Role, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 287] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 288]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.insertRole(Role, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-5a3660f6ef893f525978aa063b0a6c3a-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleById(Role, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 271] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 272]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleById(Role, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-3cf8dfd8b76b1fe8133b8ff4685fc9d6-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleByName(String, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 303] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 304]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.selectRoleByName(String, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-2b814eb730448fb2be8020a55b57840b-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.updateRoleName(Role, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcRoleDaoImpl.java:[line 278] is not discharged</div>
+<div class="b-r">Path continues at JdbcRoleDaoImpl.java:[line 279]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl.updateRoleName(Role, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-5f2819694ac32cf943e68410a91d294d-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 163] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 164]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 175]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 189]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 191]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 197]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 199]</div>
+<div class="b-r">Remaining obligations: {Statement x 1,ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-b5938dcec252a39382f887063608877d-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 162] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 163]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 164]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 175]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 189]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 191]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 197]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 199]</div>
+<div class="b-r">Remaining obligations: {Statement x 1,ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to clean up java.sql.Statement</div>
+</div>
+<div style="display:none;" id="b-uid-a68bfd3b122fbcdf72cea8dff3b23fd1-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByEmail(String)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 267] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 268]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 269]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 270]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 271]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 277]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 291]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 293]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 299]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 301]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByEmail(String) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-ba061b233e6ae606f8ffcf2b6d1c57d5-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByLogin(String)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 216] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 217]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 218]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 219]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 220]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 226]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 240]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 242]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 248]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 250]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findByLogin(String) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-5fd1e374c6ba6a9b46c7a8a0c80d978e-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByEmail(String)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 406] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 407]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 415]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 429]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 431]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 437]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 439]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByEmail(String) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-3ddd590a3e97c5be321e359b0fb09355-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserById(User)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 322] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 323]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 331]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 345]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 347]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 353]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 355]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserById(User) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-dfac019a18144fca978c76e2ef9ec69d-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByLogin(String)</div>
+<div class="b-r">Reference type java.sql.ResultSet</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 364] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 365]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 373]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 387]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 389]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 395]</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 397]</div>
+<div class="b-r">Remaining obligations: {ResultSet x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.isUserByLogin(String) may fail to clean up java.sql.ResultSet</div>
+</div>
+<div style="display:none;" id="b-uid-53936bf299850a6aa3f6e45ff2182dc-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.insertUser(User, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 444] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 446]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.insertUser(User, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-5433ee76d81ebdd1ca77659e474a9a33-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.removeUserById(User, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 475] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 476]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.removeUserById(User, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-419ae8dcad68d3fbb14d40deb8344ea7-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByEmail(String, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 490] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 491]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByEmail(String, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-e0fd83d4beecee08b40fdcd60e84e286-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserById(User, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 497] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 498]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserById(User, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-3f5f9890bbf9fbf56e3f67b10b5e63dc-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByLogin(String, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 483] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 484]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.selectUserByLogin(String, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-199ca9444fd88e9aa0f4a6879e8e4b5f-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.updateUserFields(User, Connection)</div>
+<div class="b-r">Reference type java.sql.Statement</div>
+<div class="b-r">1 instances of obligation remaining</div>
+<div class="b-r">Obligation to clean up resource created at JdbcUserDaoImpl.java:[line 459] is not discharged</div>
+<div class="b-r">Path continues at JdbcUserDaoImpl.java:[line 461]</div>
+<div class="b-r">Remaining obligations: {Statement x 1}</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.updateUserFields(User, Connection) may fail to clean up java.sql.Statement on checked exception</div>
+</div>
+<div style="display:none;" id="b-uid-ad0ef7d5d8d94e456a01b2798abde8a0-0">
+<div class="b-r">In class com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl</div>
+<div class="b-r">In method com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll()</div>
+<div class="b-r">Need to close java.sql.Statement </div>
+<div class="b-r">At JdbcUserDaoImpl.java:[line 162]</div>
+<div class="b-d">com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl.findAll() may fail to close Statement</div>
+</div>
+</div>
+<div id="fixedbox">
+<div id="bug-placeholder"/>
+</div>
+</body>
+</html>
