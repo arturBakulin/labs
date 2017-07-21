@@ -3675,16 +3675,16 @@
 [DEBUG] Creating FlatXmlProducer using the properties of this builder: org.dbunit.dataset.xml.FlatXmlDataSetBuilder[dtdMetadata=true, columnSensing=false, caseSensitiveTableNames=false, metaDataSet=null]
 [DEBUG] setConsumer(consumer) - start
 [DEBUG] produce() - start
-[DEBUG] setLexicalHandler(xmlReader=com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser@776aec5c, handler=org.dbunit.dataset.xml.FlatXmlProducer$FlatDtdHandler@1d296da) - start
-[DEBUG] setDeclHandler(xmlReader=com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser@776aec5c, handler=org.dbunit.dataset.xml.FlatXmlProducer$FlatDtdHandler@1d296da) - start
-[DEBUG] startElement(uri=, localName=, qName=dataset, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@7c7a06ec) - start
+[DEBUG] setLexicalHandler(xmlReader=com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser@4afcd809, handler=org.dbunit.dataset.xml.FlatXmlProducer$FlatDtdHandler@175c2241) - start
+[DEBUG] setDeclHandler(xmlReader=com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser@4afcd809, handler=org.dbunit.dataset.xml.FlatXmlProducer$FlatDtdHandler@175c2241) - start
+[DEBUG] startElement(uri=, localName=, qName=dataset, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@5bf0d49) - start
 [DEBUG] startDataSet() - start
-[DEBUG] startElement(uri=, localName=, qName=ROLE, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@7c7a06ec) - start
+[DEBUG] startElement(uri=, localName=, qName=ROLE, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@5bf0d49) - start
 [DEBUG] getLastTableName() - start
 [DEBUG] isLastTable(tableName=ROLE) - start
 [DEBUG] getTableName(tableName=ROLE) - start
 [DEBUG] getTableName(tableName=ROLE) - end - result=ROLE
-[DEBUG] createTableMetaData(tableName=ROLE, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@7c7a06ec) - start
+[DEBUG] createTableMetaData(tableName=ROLE, attributes=com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser$AttributesProxy@5bf0d49) - start
 [DEBUG] getColumns(columnNames=[], columns=[(ID_ROLE, UNKNOWN, nullableUnknown), (NAME, UNKNOWN, nullableUnknown)]) - start
 [DEBUG] add(tableName=ROLE, object=tableName=ROLE, columns=[(ID_ROLE, UNKNOWN, nullableUnknown), (NAME, UNKNOWN, nullableUnknown)], keys=[]) - start
 [DEBUG] getTableName(tableName=ROLE) - start
@@ -3760,7 +3760,7 @@
 	jdbc driver major version=1
 	jdbc driver minor version=4
 
-[DEBUG] metadata resultset=rs98: org.h2.result.LocalResult@6c6cb480 columns: 11 rows: 1 pos: -1
+[DEBUG] metadata resultset=rs97: org.h2.result.LocalResult@6c6cb480 columns: 11 rows: 1 pos: -1
 [DEBUG] getQualifiedNameIfEnabled(config=org.dbunit.database.DatabaseConfig[, _propertyMap={http://www.dbunit.org/features/qualifiedTableNames=false, http://www.dbunit.org/properties/tableType=[Ljava.lang.String;@527e5409, http://www.dbunit.org/properties/batchSize=100, http://www.dbunit.org/properties/statementFactory=org.dbunit.database.statement.PreparedStatementFactory@1198b989, http://www.dbunit.org/features/batchedStatements=false, http://www.dbunit.org/features/caseSensitiveTableNames=false, http://www.dbunit.org/features/allowEmptyFields=false, http://www.dbunit.org/properties/datatypeFactory=org.dbunit.dataset.datatype.DefaultDataTypeFactory[_toleratedDeltaMap=org.dbunit.dataset.datatype.ToleratedDeltaMap@7ff95560], http://www.dbunit.org/properties/metadataHandler=org.dbunit.database.DefaultMetadataHandler@3c46e67a, http://www.dbunit.org/properties/fetchSize=100, http://www.dbunit.org/properties/resultSetTableFactory=org.dbunit.database.CachedResultSetTableFactory@2aa3cd93, http://www.dbunit.org/features/datatypeWarning=true, http://www.dbunit.org/properties/escapePattern=null}]) - start
 [DEBUG] Qualified table names feature is disabled. Returning plain table name
 [DEBUG] getQualifiedName(prefix=null, name=ROLE, escapePattern=null) - start
@@ -3777,7 +3777,7 @@
 [DEBUG] getTableName(tableName=ROLE) - end - result=ROLE
 [DEBUG] isEscaped returns 'false' for tableName=ROLE (dbIdentifierQuoteString=")
 [DEBUG] Validating if table 'ROLE' exists in schema 'null' ...
-[DEBUG] close(resultSet=rs100: org.h2.result.LocalResult@c730b35 columns: 11 rows: 1 pos: 0) - start
+[DEBUG] close(resultSet=rs99: org.h2.result.LocalResult@c730b35 columns: 11 rows: 1 pos: 0) - start
 [DEBUG] getColumns() - start
 [WARN] Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
 [DEBUG] Comparing the following values using caseSensitive=false (searched&lt;=&gt;actual): catalog: null&lt;=&gt;TEST schema: null&lt;=&gt;PUBLIC table: ROLE&lt;=&gt;ROLE column: null&lt;=&gt;ID_ROLE
@@ -3832,19 +3832,19 @@
 [DEBUG] Query: select ID_ROLE, NAME from ROLE
 [DEBUG] getColumns() - start
 [DEBUG] getPrimaryKeys() - start
-[DEBUG] addTableRows(table=org.dbunit.database.ForwardOnlyResultSetTable[_metaData=[table=ROLE, cols=[(ID_ROLE, BIGINT, noNulls), (NAME, VARCHAR, nullable)], pk=[]], _resultSet=[rs103: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: -1], _statement=[stat13]], org.dbunit.database.ForwardOnlyResultSetTable[_eot=[false], _lastRow=[-1]]) - start
+[DEBUG] addTableRows(table=org.dbunit.database.ForwardOnlyResultSetTable[_metaData=[table=ROLE, cols=[(ID_ROLE, BIGINT, noNulls), (NAME, VARCHAR, nullable)], pk=[]], _resultSet=[rs102: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: -1], _statement=[stat13]], org.dbunit.database.ForwardOnlyResultSetTable[_eot=[false], _lastRow=[-1]]) - start
 [DEBUG] getColumns() - start
 [DEBUG] getValue(row=0, columnName=ID_ROLE) - start
 [DEBUG] getColumnIndex(columnName=ID_ROLE) - start
 [DEBUG] getColumnIndex(columnName=ID_ROLE) - start
 [DEBUG] getColumns() - start
 [DEBUG] getColumns() - start
-[DEBUG] getSqlValue(column=1, resultSet=rs103: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: 0) - start
+[DEBUG] getSqlValue(column=1, resultSet=rs102: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: 0) - start
 [DEBUG] getValue(row=0, columnName=NAME) - start
 [DEBUG] getColumnIndex(columnName=NAME) - start
 [DEBUG] getColumnIndex(columnName=NAME) - start
 [DEBUG] getColumns() - start
-[DEBUG] getSqlValue(column=2, resultSet=rs103: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: 0) - start
+[DEBUG] getSqlValue(column=2, resultSet=rs102: org.h2.result.LocalResult@22555ebf columns: 2 rows: 1 pos: 0) - start
 [DEBUG] getValue(row=1, columnName=ID_ROLE) - start
 [DEBUG] getColumns() - start
 [DEBUG] getPrimaryKeys() - start

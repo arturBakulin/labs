@@ -1,12 +1,10 @@
-package com.nixsolutions.laboratorythirteen.jdbc;
+package com.nixsolutions.laboratorythirteen.dao.jdbc;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.nixsolutions.laboratorythirteen.abstractclass.AbstractJdbcDao;
+import com.nixsolutions.laboratorythirteen.dao.UserDao;
 import com.nixsolutions.laboratorythirteen.entity.User;
-import com.nixsolutions.laboratorythirteen.interfaces.UserDao;
 
 public class JdbcUserDaoImpl extends AbstractJdbcDao implements UserDao {
 

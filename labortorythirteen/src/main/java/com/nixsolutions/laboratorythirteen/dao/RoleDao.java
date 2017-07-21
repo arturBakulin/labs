@@ -1,4 +1,4 @@
-package com.nixsolutions.laboratorythirteen.interfaces;
+package com.nixsolutions.laboratorythirteen.dao;
 
 import com.nixsolutions.laboratorythirteen.entity.Role;
 

@@ -12,7 +12,7 @@ public class User {
 	private String lastName;
 	private Date birthday;
 	private long id_role;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,18 +126,6 @@ public class User {
 	public User(long id, String login, String password, String email, String firstName, String lastName, Date birthday,
 			long id_role) {
 		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthday = birthday;
-		this.id_role = id_role;
-	}
-
-	public User(String login, String password, String email, String firstName, String lastName, Date birthday,
-			long id_role) {
-		super();
 		this.login = login;
 		this.password = password;
 		this.email = email;

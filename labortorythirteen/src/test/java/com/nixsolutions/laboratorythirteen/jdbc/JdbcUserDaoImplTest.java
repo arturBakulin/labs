@@ -16,10 +16,9 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.h2.tools.RunScript;
 import org.junit.*;
-
+import com.nixsolutions.laboratorythirteen.dao.UserDao;
+import com.nixsolutions.laboratorythirteen.dao.jdbc.JdbcUserDaoImpl;
 import com.nixsolutions.laboratorythirteen.entity.User;
-import com.nixsolutions.laboratorythirteen.interfaces.UserDao;
-import com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImpl;
 
 public class JdbcUserDaoImplTest {
 
@@ -27,6 +26,7 @@ public class JdbcUserDaoImplTest {
 	private IDatabaseTester databaseTester;
 	private UserDao userDao = null;
 	private User user = null;
+	private User userExpected = null;
 
 	@BeforeClass
 	public static void createSchema() throws Exception {
@@ -38,7 +38,24 @@ public class JdbcUserDaoImplTest {
 	public void importDataSet() throws Exception {
 		IDataSet dataSet = readDataSet();
 		userDao = new JdbcUserDaoImpl();
-		user = new User("Doe", "maxbars", "denbars@mail.com", "dfdfb", "dbrdrv", Date.valueOf("1970-12-01"), 1);
+		user = new User();
+		user.setFirstName("dfdfb");
+		user.setLastName("dbrdrv");
+		user.setEmail("denbars@mail.com");
+		user.setLogin("Doe");
+		user.setPassword("maxbars");
+		user.setBirhday(Date.valueOf("1970-12-01"));
+		user.setId_role(1);
+		userExpected = new User();
+		userExpected.setId(1);
+		userExpected.setFirstName("Doe");
+		userExpected.setLastName("DoeSecondName");
+		userExpected.setEmail("DoeUser@gmail.com");
+		userExpected.setLogin("DoeUser");
+		userExpected.setPassword("12345");
+		userExpected.setBirhday(Date.valueOf("1992-05-02"));
+		userExpected.setId_role(1);
+
 		cleanlyInsert(dataSet);
 	}
 
@@ -91,10 +108,8 @@ public class JdbcUserDaoImplTest {
 
 	@Test
 	public void getUserByLoginTest() throws Exception {
-		User userSecond = new User("DoeUser", "12345", "DoeUser@gmail.com", "Doe", "DoeSecondName",
-				Date.valueOf("1992-05-02"), 1);
-		User userFromBd = userDao.findByLogin(userSecond.getLogin());
-		assertEquals(userSecond, userFromBd);
+		User userFromBd = userDao.findByLogin(userExpected.getLogin());
+		assertEquals(userExpected, userFromBd);
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -109,31 +124,23 @@ public class JdbcUserDaoImplTest {
 
 	@Test
 	public void getUserByEmailTest() throws Exception {
-		User userSecond = new User("DoeUser", "12345", "DoeUser@gmail.com", "Doe", "DoeSecondName",
-				Date.valueOf("1992-05-02"), 1);
-		User userFromBd = userDao.findByEmail(userSecond.getEmail());
-		assertEquals(userSecond, userFromBd);
+		User userFromBd = userDao.findByEmail(userExpected.getEmail());
+		assertEquals(userExpected, userFromBd);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void deleteUserNullTest() throws Exception {
-		userDao.findByEmail(null);
+		userDao.remove(null);
 	}
 
 	@Test
 	public void deleteUserTest() throws Exception {
-		User userSecond = userDao.findByLogin("DoeUser");
 		InputStream input = JdbcUserDaoImplTest.class.getClassLoader().getResourceAsStream("removeuserexpected.xml");
 		IDataSet expectedData = new FlatXmlDataSetBuilder().build(input);
-		userDao.remove(userSecond);
+		userDao.remove(userExpected);
 		IDataSet actualData = databaseTester.getConnection().createDataSet();
 		String[] ignore = { "id" };
 		Assertion.assertEqualsIgnoreCols(expectedData, actualData, "USER", ignore);
-	}
-
-	private IDataSet readDataSet() throws Exception {
-		InputStream input = JdbcUserDaoImplTest.class.getClassLoader().getResourceAsStream("userroledataset.xml");
-		return new FlatXmlDataSetBuilder().build(input);
 	}
 
 	@Test
@@ -150,6 +157,11 @@ public class JdbcUserDaoImplTest {
 		databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
 		databaseTester.setDataSet(dataSet);
 		databaseTester.onSetup();
+	}
+
+	private IDataSet readDataSet() throws Exception {
+		InputStream input = JdbcUserDaoImplTest.class.getClassLoader().getResourceAsStream("userroledataset.xml");
+		return new FlatXmlDataSetBuilder().build(input);
 	}
 
 	private static Properties setupProperties() throws IOException {

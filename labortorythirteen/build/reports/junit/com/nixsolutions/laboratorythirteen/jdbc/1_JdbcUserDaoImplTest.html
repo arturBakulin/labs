@@ -119,13 +119,11 @@
     
         cur['main.build.dir'] = 'build/classes';
     
-        cur['main.src.dir.abstractclass'] = 'src/main/java/com/nixsolutions/laboratorythirteen/abstractclass';
+        cur['main.src.dir.dao'] = 'src/main/java/com/nixsolutions/laboratorythirteen/dao';
+    
+        cur['main.src.dir.dao.jdbc'] = 'src/main/java/com/nixsolutions/laboratorythirteen/dao/jdbc';
     
         cur['main.src.dir.entity'] = 'src/main/java/com/nixsolutions/laboratorythirteen/entity';
-    
-        cur['main.src.dir.interfaces'] = 'src/main/java/com/nixsolutions/laboratorythirteen/interfaces';
-    
-        cur['main.src.dir.jdbc'] = 'src/main/java/com/nixsolutions/laboratorythirteen/jdbc';
     
         cur['net.sourceforge.cobertura.datafile'] = '/Users/grigoriy/Documents/workspace/labortorythirteen/build/temp/cobertura.ser';
     
@@ -165,7 +163,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeBig';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/Users/grigoriy/Documents/workspace/labortorythirteen/build/temp/TEST-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest.txt formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/grigoriy/Documents/workspace/labortorythirteen/build/temp/TEST-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest.xml crashfile=/Users/grigoriy/Documents/workspace/labortorythirteen/junitvmwatcher4847762557080791763.properties propsfile=/Users/grigoriy/Documents/workspace/labortorythirteen/junit7135549101970849130.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,/Users/grigoriy/Documents/workspace/labortorythirteen/build/temp/TEST-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest.txt formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/Users/grigoriy/Documents/workspace/labortorythirteen/build/temp/TEST-com.nixsolutions.laboratorythirteen.jdbc.JdbcUserDaoImplTest.xml crashfile=/Users/grigoriy/Documents/workspace/labortorythirteen/junitvmwatcher5054669739807915795.properties propsfile=/Users/grigoriy/Documents/workspace/labortorythirteen/junit2057701342854182472.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -236,7 +234,7 @@
 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th>Skipped</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
 </tr>
 <tr valign="top" class="Pass">
-<td><a title="Display all tests" href="1_JdbcUserDaoImplTest.html">JdbcUserDaoImplTest</a></td><td><a title="Display all tests" href="1_JdbcUserDaoImplTest.html">14</a></td><td>0</td><td>0</td><td>0</td><td>0.792</td><td>2017-07-20T12:03:18</td><td>Grigoriys-MBP.nixsolutions.com</td>
+<td><a title="Display all tests" href="1_JdbcUserDaoImplTest.html">JdbcUserDaoImplTest</a></td><td><a title="Display all tests" href="1_JdbcUserDaoImplTest.html">14</a></td><td>0</td><td>0</td><td>0</td><td>0.796</td><td>2017-07-21T09:54:15</td><td>Grigoriys-MBP.nixsolutions.com</td>
 </tr>
 </table>
 <h2>Tests</h2>
@@ -245,46 +243,46 @@
 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getAllUsersTest"></a>getAllUsersTest</td><td>Success</td><td></td><td>0.242</td>
+<td><a name="getAllUsersTest"></a>getAllUsersTest</td><td>Success</td><td></td><td>0.238</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByEmailTest"></a>getUserByEmailTest</td><td>Success</td><td></td><td>0.021</td>
+<td><a name="getUserByEmailTest"></a>getUserByEmailTest</td><td>Success</td><td></td><td>0.022</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByLoginNoSuchLoginTest"></a>getUserByLoginNoSuchLoginTest</td><td>Success</td><td></td><td>0.024</td>
+<td><a name="getUserByLoginNoSuchLoginTest"></a>getUserByLoginNoSuchLoginTest</td><td>Success</td><td></td><td>0.021</td>
 </tr>
 <tr valign="top" class="TableRowColor">
 <td><a name="createUserNullTest"></a>createUserNullTest</td><td>Success</td><td></td><td>0.024</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByLoginTest"></a>getUserByLoginTest</td><td>Success</td><td></td><td>0.025</td>
+<td><a name="getUserByLoginTest"></a>getUserByLoginTest</td><td>Success</td><td></td><td>0.022</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="updateUserNoSuchUserTest"></a>updateUserNoSuchUserTest</td><td>Success</td><td></td><td>0.021</td>
+<td><a name="updateUserNoSuchUserTest"></a>updateUserNoSuchUserTest</td><td>Success</td><td></td><td>0.022</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="deleteUserNullTest"></a>deleteUserNullTest</td><td>Success</td><td></td><td>0.030</td>
+<td><a name="deleteUserNullTest"></a>deleteUserNullTest</td><td>Success</td><td></td><td>0.033</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByEmailNullTest"></a>getUserByEmailNullTest</td><td>Success</td><td></td><td>0.019</td>
+<td><a name="getUserByEmailNullTest"></a>getUserByEmailNullTest</td><td>Success</td><td></td><td>0.017</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="updateUserTest"></a>updateUserTest</td><td>Success</td><td></td><td>0.041</td>
+<td><a name="updateUserTest"></a>updateUserTest</td><td>Success</td><td></td><td>0.045</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="updateUserNullTest"></a>updateUserNullTest</td><td>Success</td><td></td><td>0.023</td>
+<td><a name="updateUserNullTest"></a>updateUserNullTest</td><td>Success</td><td></td><td>0.020</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="createUserTest"></a>createUserTest</td><td>Success</td><td></td><td>0.038</td>
+<td><a name="createUserTest"></a>createUserTest</td><td>Success</td><td></td><td>0.031</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByLoginNullTest"></a>getUserByLoginNullTest</td><td>Success</td><td></td><td>0.016</td>
+<td><a name="getUserByLoginNullTest"></a>getUserByLoginNullTest</td><td>Success</td><td></td><td>0.018</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="getUserByEmailNoSuchEmailTest"></a>getUserByEmailNoSuchEmailTest</td><td>Success</td><td></td><td>0.026</td>
+<td><a name="getUserByEmailNoSuchEmailTest"></a>getUserByEmailNoSuchEmailTest</td><td>Success</td><td></td><td>0.028</td>
 </tr>
 <tr valign="top" class="TableRowColor">
-<td><a name="deleteUserTest"></a>deleteUserTest</td><td>Success</td><td></td><td>0.031</td>
+<td><a name="deleteUserTest"></a>deleteUserTest</td><td>Success</td><td></td><td>0.028</td>
 </tr>
 </table>
 <div class="Properties">

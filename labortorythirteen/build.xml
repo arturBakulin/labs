@@ -1,9 +1,8 @@
 <project name="laboratorythirteen">
 	<property name="main.build.dir" value="build/classes" />
-	<property name="main.src.dir.abstractclass" value="src/main/java/com/nixsolutions/laboratorythirteen/abstractclass" />
 	<property name="main.src.dir.entity" value="src/main/java/com/nixsolutions/laboratorythirteen/entity" />
-	<property name="main.src.dir.interfaces" value="src/main/java/com/nixsolutions/laboratorythirteen/interfaces" />
-	<property name="main.src.dir.jdbc" value="src/main/java/com/nixsolutions/laboratorythirteen/jdbc" />
+	<property name="main.src.dir.dao" value="src/main/java/com/nixsolutions/laboratorythirteen/dao" />
+	<property name="main.src.dir.dao.jdbc" value="src/main/java/com/nixsolutions/laboratorythirteen/dao/jdbc"/>
 	<property name="test.build.dir" value="build/tests" />
 	<property name="test.src.dir" value="src/test/java/com/nixsolutions/laboratorythirteen/jdbc" />
 	<property name="instrumented.test.dir" location="build/instrumented/com/nixsolutions/laboratorythirteen/jdbc" />
@@ -21,10 +20,9 @@
 	<property name="cobertura.ser.file" location="${report.temp.dir}/cobertura.ser" />
 	<property name="instrumented.dir" location="build/instrumented" />
 	<path id="classpath.src">
-		<pathelement location="${main.src.dir.abstractclass}" />
 		<pathelement location="${main.src.dir.entity}" />
-		<pathelement location="${main.src.dir.interfaces}" />
-		<pathelement location="${main.src.dir.jdbc}" />
+		<pathelement location="${main.src.dir.dao}" />
+		<pathelement location="${main.src.dir.dao.jdbc}" />
 	</path>
 	<path id="classpath.test">
 		<pathelement location="lib/junit-4.12.jar" />

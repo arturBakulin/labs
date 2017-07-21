@@ -11,10 +11,9 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.h2.tools.RunScript;
 import org.junit.*;
-
+import com.nixsolutions.laboratorythirteen.dao.RoleDao;
+import com.nixsolutions.laboratorythirteen.dao.jdbc.JdbcRoleDaoImpl;
 import com.nixsolutions.laboratorythirteen.entity.Role;
-import com.nixsolutions.laboratorythirteen.interfaces.RoleDao;
-import com.nixsolutions.laboratorythirteen.jdbc.JdbcRoleDaoImpl;
 
 public class JdbcRoleDaoImplTest {
 
@@ -33,7 +32,8 @@ public class JdbcRoleDaoImplTest {
 	public void importDataSet() throws Exception {
 		IDataSet dataSet = readDataSet();
 		roleDao = new JdbcRoleDaoImpl();
-		role = new Role("Registred");
+		role = new Role();
+		role.setName("Registred");
 		cleanlyInsert(dataSet);
 	}
 
@@ -85,7 +85,9 @@ public class JdbcRoleDaoImplTest {
 
 	@Test
 	public void updateRoleTest() throws Exception {
-		Role roleForUpdate = new Role(2, "Anonimus");
+		Role roleForUpdate = new Role();
+		roleForUpdate.setId(2);
+		roleForUpdate.setName("Anonimus");
 		InputStream input = JdbcRoleDaoImplTest.class.getClassLoader().getResourceAsStream("updateroleexpected.xml");
 		IDataSet expectedData = new FlatXmlDataSetBuilder().build(input);
 		roleDao.update(roleForUpdate);
@@ -101,10 +103,12 @@ public class JdbcRoleDaoImplTest {
 
 	@Test
 	public void deleteRoleTest() throws Exception {
-		Role roleFromDB = roleDao.findByName("Doe");
+		Role roleFromDb = new Role();
+		roleFromDb.setId(1);
+		roleFromDb.setName("Doe");
 		InputStream input = JdbcRoleDaoImplTest.class.getClassLoader().getResourceAsStream("removeroleexpected.xml");
 		IDataSet expectedData = new FlatXmlDataSetBuilder().build(input);
-		roleDao.remove(roleFromDB);
+		roleDao.remove(roleFromDb);
 		IDataSet actualData = databaseTester.getConnection().createDataSet();
 		String[] ignore = { "id" };
 		Assertion.assertEqualsIgnoreCols(expectedData, actualData, "ROLE", ignore);

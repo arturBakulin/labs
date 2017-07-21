@@ -1,4 +1,4 @@
-package com.nixsolutions.laboratorythirteen.abstractclass;
+package com.nixsolutions.laboratorythirteen.dao.jdbc;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class AbstractJdbcDao {
-	
+
 	protected BasicDataSource ds;
-	protected static final Logger log = LoggerFactory.getLogger(AbstractJdbcDao.class);
-	
+	protected final Logger log = LoggerFactory.getLogger(this.getClass());
+
 	public AbstractJdbcDao() {
 		ds = new BasicDataSource();
 		ds.setDriverClassName(setupProperties().getProperty("dbdriver"));

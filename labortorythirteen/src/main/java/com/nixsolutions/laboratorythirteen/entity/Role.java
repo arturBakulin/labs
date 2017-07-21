@@ -17,15 +17,6 @@ public class Role {
 		return name;
 	}
 
-	public Role(long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
-	public Role(String name) {
-		this.name = name;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

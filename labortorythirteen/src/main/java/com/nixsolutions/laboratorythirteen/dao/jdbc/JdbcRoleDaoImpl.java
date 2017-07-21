@@ -1,13 +1,13 @@
-package com.nixsolutions.laboratorythirteen.jdbc;
+package com.nixsolutions.laboratorythirteen.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-import com.nixsolutions.laboratorythirteen.abstractclass.AbstractJdbcDao;
+import com.nixsolutions.laboratorythirteen.dao.RoleDao;
 import com.nixsolutions.laboratorythirteen.entity.Role;
-import com.nixsolutions.laboratorythirteen.interfaces.RoleDao;
 
 public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 
@@ -20,6 +20,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		try {
 			connection = createConnection();
 			prepStatement = insertRole(role, connection);
+			prepStatement.getResultSet();
 			connection.commit();
 		} catch (SQLException e) {
 			log.error("SQLException while getting connection", e);
@@ -56,7 +57,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 				throw new RuntimeException("SQLException while closing connection", e1);
 			}
 		}
-		}
+	}
 
 	@Override
 	public void update(Role role) {
@@ -199,7 +200,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		}
 		return role;
 	}
-	
+
 	@Override
 	public Connection createConnection() {
 		Connection connection = null;
@@ -272,7 +273,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		prepStatement.setLong(1, role.getId());
 		return prepStatement;
 	}
-	
+
 	private PreparedStatement updateRoleName(Role role, Connection connection) throws SQLException {
 		PreparedStatement prepStatement;
 		prepStatement = connection.prepareStatement("UPDATE ROLE SET NAME = ? WHERE ID_ROLE = ?;");
@@ -281,7 +282,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		prepStatement.executeUpdate();
 		return prepStatement;
 	}
-	
+
 	private PreparedStatement insertRole(Role role, Connection connection) throws SQLException {
 		PreparedStatement prepStatement;
 		prepStatement = connection.prepareStatement("INSERT INTO ROLE (NAME) VALUES (?)");
@@ -289,7 +290,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		prepStatement.executeUpdate();
 		return prepStatement;
 	}
-	
+
 	private PreparedStatement deleteRoleById(Role role, Connection connection) throws SQLException {
 		PreparedStatement prepStatement;
 		prepStatement = connection.prepareStatement("DELETE FROM ROLE WHERE ID_ROLE = ?;");
@@ -297,7 +298,7 @@ public class JdbcRoleDaoImpl extends AbstractJdbcDao implements RoleDao {
 		prepStatement.executeUpdate();
 		return prepStatement;
 	}
-	
+
 	private PreparedStatement selectRoleByName(String name, Connection connection) throws SQLException {
 		PreparedStatement prepStatement;
 		prepStatement = connection.prepareStatement("SELECT * FROM ROLE WHERE NAME = ?;");
