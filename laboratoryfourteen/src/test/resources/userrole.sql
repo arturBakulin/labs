@@ -1,0 +1,2 @@
+CREATE TABLE if not exists USER(ID bigint PRIMARY KEY auto_increment NOT NULL, LOGIN varchar(50), PASSWORD varchar(50), EMAIL varchar(50), FIRSTNAME varchar(50),  LASTNAME varchar(50), BIRTHDAY date, ID_ROLE bigint NOT NULL);
+CREATE TABLE if not exists ROLE(ID_ROLE bigint auto_increment,  NAME varchar(50));

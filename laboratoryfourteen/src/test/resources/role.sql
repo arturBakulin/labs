@@ -1,0 +1,1 @@
+CREATE TABLE if not exists ROLE(ID_ROLE bigint auto_increment NOT NULL, NAME varchar(50));

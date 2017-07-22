@@ -1,0 +1,3 @@
+<dataset>
+  <USER ID = "2" Login = "FooUser" Password = "12345" Email = "DoeUser@gmail.com" FirstName = "Foo" LastName = "DoeSecondName" Birthday = "1992-05-02" id_role = "2"/>
+</dataset>
